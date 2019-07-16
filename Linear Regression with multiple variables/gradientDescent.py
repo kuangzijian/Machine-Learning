@@ -18,9 +18,7 @@ def gradientDescent(X, y, theta, alpha, num_iters):
         h = X.dot(theta)
 
         #% X' * (h - y) = sum((h - y) .* X)'
-        #theta -= alpha / m * (X.T.dot(h - y))
-        theta -= alpha / m * np.asmatrix((np.multiply((h-y),X)).sum(axis=0)).transpose()
-
+        theta -= alpha / m * (X.T.dot(h - y))
 
         #% Save the cost J in every iteration
         J_history[iter] = computeCost(X, y, theta)
