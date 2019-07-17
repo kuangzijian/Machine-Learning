@@ -15,19 +15,19 @@ x = A[:,0]
 y = A[:,1]
 m = len(x)
 
-#(x,y)
-
 # ============= 2.2 Gradient Descent =============
+
+#Add intercept term to X
 x0 = np.ones((m,1))
 X = np.hstack((x0,x.reshape(m, 1)))
 theta = np.zeros(2)
-iterations = 1500
+num_iters = 1500
 alpha = 0.01
 
 J = computeCost(X, y, theta)
 print(J)
 
-theta = gradientDescent(X, y, theta, alpha, iterations)
+theta, _ = gradientDescent(X, y, theta, alpha, num_iters)
 print('Theta computed from gradient descent: ', theta[0], theta[1])
 
 plt.figure()
