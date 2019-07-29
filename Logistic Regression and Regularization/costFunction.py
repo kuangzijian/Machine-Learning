@@ -10,10 +10,6 @@ def costFunction(theta, X, y):
     # Initialize some useful values
     m = len(y) # number of training examples
 
-    # You need to return the following variables correctly
-    J = 0
-    grad = np.zeros(len(theta))
-
     # ====================== YOUR CODE HERE ======================
     # Instructions: Compute the cost of a particular choice of theta.
     #               You should set J to the cost.
@@ -24,9 +20,7 @@ def costFunction(theta, X, y):
     #
 
     # calculates hypothesis
-
     z = X.dot(theta)
-
     h = sigmoid(z)
 
     # J = (1 / m) * sum(-y .* log(h) - (1 - y) .* log(1 - h))

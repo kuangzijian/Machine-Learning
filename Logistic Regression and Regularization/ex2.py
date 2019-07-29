@@ -2,9 +2,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy.optimize as opt
 from plotData import plotData
+from plotDecisionBoundary import plotDecisionBoundary
 from costFunction import costFunction
 from sigmoid import sigmoid
+from predict import predict
 
+# ==================== 1. Logistic Regression  ====================
 
 # Load Data
 # The first two columns contains the exam scores and the third column contains the label.
@@ -13,7 +16,7 @@ X = data[:, 0:2]
 y = data[:, 2]
 
 
-# ==================== Part 1: Plotting ====================
+# ==================== 1.1 Visualizing the data ====================
 print('Plotting data with + indicating (y = 1) examples and o indicating (y = 0) examples.')
 
 plt.figure()
@@ -28,10 +31,8 @@ plt.ylabel('Exam 2 score')
 plt.xlim([30, 100])
 plt.ylim([30, 100])
 plt.legend(['Admitted', 'Not admitted'], loc='upper right', numpoints=1)
-plt.show()
 
-
-# ============ Part 2: Compute Cost and Gradient ============
+# ============ 1.2.2 Cost function and gradient ============
 # Setup the data matrix appropriately, and add ones for the intercept term
 m, n = X.shape
 
@@ -45,3 +46,28 @@ cost, grad = costFunction(theta, X, y)
 
 print('Cost at initial theta (zeros):', cost)
 print('Gradient at initial theta (zeros):', grad)
+
+# ============= 1.2.3 Learning parameters using fminunc  =============
+theta, nfeval, rc = opt.fmin_tnc(func=costFunction, x0=theta, args=(X, y), messages=0)
+if rc == 0:
+    print('Local minimum reached after', nfeval, 'function evaluations.')
+
+# Print theta to screen
+cost, _ = costFunction(theta, X, y)
+print('Cost at theta found by fminunc:', cost)
+print('theta:', theta)
+
+# Plot Boundary
+plotDecisionBoundary(theta, X, y)
+plt.show()
+
+# ============== 1.2.4 Evaluating logistic regression ==============
+# Predict probability for a student with score 45 on exam 1 and score 85 on exam 2
+prob = sigmoid(np.dot(np.array([1, 45, 85]), theta))
+print('For a student with scores 45 and 85, we predict an admission probability of', prob)
+
+# Compute accuracy on our training set
+p = predict(theta, X)
+print('Train Accuracy:', np.mean(p == y) * 100)
+
+
