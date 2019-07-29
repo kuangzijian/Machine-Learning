@@ -6,7 +6,7 @@ from computeCost import computeCost
 from gradientDescent import gradientDescent
 # This import registers the 3D projection, but is otherwise unused.
 from mpl_toolkits.mplot3d import Axes3D  # noqa: F401 unused import
-
+# ============= Linear regression with one variable =============
 # ============= 2.1 Plotting the data =============
 A = np.loadtxt(open('ex1data1.txt', 'r'), delimiter=",")
 A = np.array(A)
