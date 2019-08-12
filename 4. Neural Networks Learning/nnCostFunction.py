@@ -33,9 +33,7 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
     #         computed in ex4.m
     #
     m, n = X.shape
-    X = np.hstack((np.ones((m, 1)), X))
-
-    a1 = X
+    a1 = np.hstack((np.ones((m, 1)), X))
     a2 = np.hstack((np.ones((m, 1)), sigmoid(a1.dot(Theta1.T))))
     h = sigmoid(a2.dot(Theta2.T))
 
@@ -73,7 +71,7 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
     Z2 = np.hstack((np.ones((m, 1)), a1.dot(Theta1.T)))
     d2 = d3.dot(Theta2) * sigmoidGradient(Z2)
     d2 = d2[:, 1:]
-    D1 = d2.T.dot(X)
+    D1 = d2.T.dot(a1)
 
     Theta_1_grad = 1.0 * D1 / m
 

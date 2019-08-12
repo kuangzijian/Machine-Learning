@@ -25,7 +25,7 @@ num_labels = 10          # 10 labels, from 1 to 10 (note that we have mapped "0"
 rand_indices = np.random.permutation(m)
 plt.figure()
 displayData(X[rand_indices[0:100], :], padding=1)
-#plt.show()
+plt.show()
 
 # =================== 1.2 Model representation ===================
 # Load the weights into variables Theta1 and Theta2
