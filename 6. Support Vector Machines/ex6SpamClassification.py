@@ -64,7 +64,7 @@ for i in range(15):
     print("{0:<15s} ({1:f})".format(vocab_list[idx[i]], coef[idx[i]]))
 
 
-# =================== Part 6: Try Your Own Emails =====================
+# =================== 2.5 Optional (ungraded) exercise: Try your own emails =====================
 filename = 'spamSample1.txt'
 with open(filename) as f:
     file_contents = f.read().replace('\n', '')
