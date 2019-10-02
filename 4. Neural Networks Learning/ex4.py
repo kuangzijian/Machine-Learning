@@ -84,3 +84,15 @@ plt.show()
 # ================= 3.1 Optional (ungraded) exercise: predict =================
 pred = predict(Theta_1_trained, Theta_2_trained, X)
 print('Training Set Accuracy:', np.mean(pred == y) * 100)
+
+rp = np.random.permutation(m)
+for i in range(m):
+    print('Displaying Example Image')
+    displayData(X[rp[i],].reshape(1, n))
+
+    pred = predict(Theta_1_trained, Theta_2_trained, X[rp[i],].reshape(1, n))
+    print('Neural Network Prediction: {} (digit {})'.format(pred, pred % 10))
+    plt.show()
+    s = input('Paused - press enter to continue, q to exit: ')
+    if s == 'q':
+        break
